@@ -1,7 +1,7 @@
-main.log
 *.pl
 *.ps
 *.xbb
 *.log
 *.aux
 *.dvi
+lrep_e*.eps
