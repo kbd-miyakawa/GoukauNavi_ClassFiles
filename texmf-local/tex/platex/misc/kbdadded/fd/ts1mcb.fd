@@ -1,0 +1,17 @@
+% ts1mcb.fd
+\expandafter\ifx\csname mcb@scale\endcsname\relax
+  \let\mcb@@scale\@empty
+\else
+  \edef\mcb@@scale{s*[\csname mcb@scale\endcsname]}%
+\fi
+\DeclareFontFamily{TS1}{mcb}{}
+\DeclareFontShape{TS1}{mcb}{m}{n}{<->\mcb@@scale mcb-r-ts1}{}
+\DeclareFontShape{TS1}{mcb}{m}{it}{<->\mcb@@scale mcb-ri-ts1}{}
+\DeclareFontShape{TS1}{mcb}{m}{sl}{<->\mcb@@scale mcb-ro-ts1}{}
+\DeclareFontShape{TS1}{mcb}{b}{n}{<->ssub*mcb/m/n}{}
+\DeclareFontShape{TS1}{mcb}{b}{it}{<->ssub*mcb/m/it}{}
+\DeclareFontShape{TS1}{mcb}{b}{sl}{<->ssub*mcb/m/sl}{}
+\DeclareFontShape{TS1}{mcb}{bx}{n}{<->ssub*mcb/m/n}{}
+\DeclareFontShape{TS1}{mcb}{bx}{it}{<->ssub*mcb/m/it}{}
+\DeclareFontShape{TS1}{mcb}{bx}{sl}{<->ssub*mcb/m/sl}{}
+%% EOF

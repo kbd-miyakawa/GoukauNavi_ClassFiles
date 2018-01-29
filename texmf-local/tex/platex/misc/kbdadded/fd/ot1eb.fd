@@ -1,0 +1,17 @@
+% ot1eb.fd
+\expandafter\ifx\csname eb@scale\endcsname\relax
+  \let\eb@@scale\@empty
+\else
+  \edef\eb@@scale{s*[\csname eb@scale\endcsname]}%
+\fi
+\DeclareFontFamily{OT1}{eb}{}
+\DeclareFontShape{OT1}{eb}{m}{n}{<->\eb@@scale eb-r-ot1}{}
+\DeclareFontShape{OT1}{eb}{m}{it}{<->\eb@@scale eb-ri-ot1}{}
+\DeclareFontShape{OT1}{eb}{m}{sl}{<->\eb@@scale eb-ro-ot1}{}
+\DeclareFontShape{OT1}{eb}{b}{n}{<->ssub*eb/m/n}{}
+\DeclareFontShape{OT1}{eb}{b}{it}{<->ssub*eb/m/it}{}
+\DeclareFontShape{OT1}{eb}{b}{sl}{<->ssub*eb/m/sl}{}
+\DeclareFontShape{OT1}{eb}{bx}{n}{<->ssub*eb/m/n}{}
+\DeclareFontShape{OT1}{eb}{bx}{it}{<->ssub*eb/m/it}{}
+\DeclareFontShape{OT1}{eb}{bx}{sl}{<->ssub*eb/m/sl}{}
+%% EOF

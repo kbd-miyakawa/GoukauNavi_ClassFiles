@@ -1,0 +1,17 @@
+% ly1mcb.fd
+\expandafter\ifx\csname mcb@scale\endcsname\relax
+  \let\mcb@@scale\@empty
+\else
+  \edef\mcb@@scale{s*[\csname mcb@scale\endcsname]}%
+\fi
+\DeclareFontFamily{LY1}{mcb}{}
+\DeclareFontShape{LY1}{mcb}{m}{n}{<->\mcb@@scale mcb-r-ly1}{}
+\DeclareFontShape{LY1}{mcb}{m}{it}{<->\mcb@@scale mcb-ri-ly1}{}
+\DeclareFontShape{LY1}{mcb}{m}{sl}{<->\mcb@@scale mcb-ro-ly1}{}
+\DeclareFontShape{LY1}{mcb}{b}{n}{<->ssub*mcb/m/n}{}
+\DeclareFontShape{LY1}{mcb}{b}{it}{<->ssub*mcb/m/it}{}
+\DeclareFontShape{LY1}{mcb}{b}{sl}{<->ssub*mcb/m/sl}{}
+\DeclareFontShape{LY1}{mcb}{bx}{n}{<->ssub*mcb/m/n}{}
+\DeclareFontShape{LY1}{mcb}{bx}{it}{<->ssub*mcb/m/it}{}
+\DeclareFontShape{LY1}{mcb}{bx}{sl}{<->ssub*mcb/m/sl}{}
+%% EOF

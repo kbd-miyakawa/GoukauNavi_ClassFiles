@@ -1,0 +1,17 @@
+% ly1gtb.fd
+\expandafter\ifx\csname gtb@scale\endcsname\relax
+  \let\gtb@@scale\@empty
+\else
+  \edef\gtb@@scale{s*[\csname gtb@scale\endcsname]}%
+\fi
+\DeclareFontFamily{LY1}{gtb}{}
+\DeclareFontShape{LY1}{gtb}{m}{n}{<->\gtb@@scale gtb-r-ly1}{}
+\DeclareFontShape{LY1}{gtb}{m}{it}{<->\gtb@@scale gtb-ri-ly1}{}
+\DeclareFontShape{LY1}{gtb}{m}{sl}{<->\gtb@@scale gtb-ro-ly1}{}
+\DeclareFontShape{LY1}{gtb}{b}{n}{<->ssub*gtb/m/n}{}
+\DeclareFontShape{LY1}{gtb}{b}{it}{<->ssub*gtb/m/it}{}
+\DeclareFontShape{LY1}{gtb}{b}{sl}{<->ssub*gtb/m/sl}{}
+\DeclareFontShape{LY1}{gtb}{bx}{n}{<->ssub*gtb/m/n}{}
+\DeclareFontShape{LY1}{gtb}{bx}{it}{<->ssub*gtb/m/it}{}
+\DeclareFontShape{LY1}{gtb}{bx}{sl}{<->ssub*gtb/m/sl}{}
+%% EOF
