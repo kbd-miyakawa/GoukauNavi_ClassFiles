@@ -1,0 +1,73 @@
+\RequirePackage{tcolorbox}
+\RequirePackage{varwidth} 
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+
+%%\tcbset{}
+
+\newdimen\kb@glidgap
+\kb@glidgap=\baselineskip
+\addtolength{\kb@glidgap}{-\Cht}
+\newtcolorbox[auto counter]{theobox}[1][]{%
+		enhanced,
+		frame empty,
+		interior empty,
+		coltitle=black,
+		fonttitle=\bfseries,
+		colbacktitle=white,
+		extras broken={frame empty,interior empty},
+		borderline={0.12mm}{0mm}{black},
+%%		sharp corners=downhill,
+		sharp corners,
+		breakable=true,
+		top=3mm,
+		bottom=1mm,
+		left=.5zw,
+		right=.5zw,
+		before skip=\baselineskip,
+		after skip=\baselineskip,
+		attach boxed title to top left={yshift=-2.5mm,xshift=3mm},
+		boxed title style={size=small,boxrule=.12mm,sharp corners=all},
+		%%varwidth boxed title,
+		title=#1,
+}
+\newtcolorbox{normalbox}{
+empty, borderline={.12mm}{0pt}{black},
+breakable,
+%%coltitle=black,
+sharp corners,
+		top=1mm,
+		bottom=1mm,
+		left=1zw,
+		right=1zw,
+		before skip=\baselineskip,
+		after skip=\baselineskip
+}
+
+\renewenvironment{titlebox}[1]{%
+\abovedisplayskip\z@
+\abovedisplayshortskip\z@
+\belowdisplayshortskip\z@
+\belowdisplayskip\z@
+%#1 = タイトル,　#2 = 定理環境名
+\ifstrempty{#1}{% ifstremptyはetoolbox.styで定義．etoolbox.styはtcolorboxが読み込むので宣言不要
+\begin{theobox}[]%
+}
+{\begin{theobox}[#1]\begin{ceqn}}
+}{\end{ceqn}
+\end{theobox}
+}
+
+
+\renewenvironment{shadebox}{%
+\abovedisplayskip\z@
+\abovedisplayshortskip\z@
+\belowdisplayshortskip\z@
+\belowdisplayskip\z@
+\begin{ceqn}
+\begin{normalbox}
+}{\end{normalbox}
+\end{ceqn}\noindent
+}
+

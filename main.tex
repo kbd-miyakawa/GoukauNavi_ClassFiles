@@ -1,0 +1,71 @@
+% !TEX program = uplatex
+% !TEX root = V:\暫定進行\tosyo\合格ナビ数検１級\解析編\main.tex
+\documentclass[a5/13QC,dvipdfmx,useotf,uplatex,fleqn,
+openany,
+%draft
+]{kbdbook}
+\usepackage{amsmath,amssymb}
+\mathindent4zw
+%% 左寄せ\begin{fleqn}[20pt]のようにつかう
+\usepackage{nccmath}
+\usepackage[deluxe,scale=1]{otf}
+
+\usepackage[ipaex,
+mcl=A-OTF-RyuminPr6-Light.otf,
+mcb*=KozMinPro-Bold.otf,
+mg*=KozGoPro-ExtraLight.otf,
+eb*=KozGoPro-Bold.otf,
+gtb*=KozGoPro-Regular.otf
+]{KBDaddjfont}
+
+
+\usepackage{preamble}
+
+\includeonly{
+Pre,
+Chap00,
+Chap01,
+%Chap02,
+%Chap03,
+%Chap04,
+%Chap05,
+%Chap06,
+%Chap07,
+%apd,
+%okuduke
+}
+\begin{document}
+\renewcommand{\theenumi}{\alph{enumi}}%
+\renewcommand{\labelenumi}{\theenumi.}%
+\frontmatter
+\noindent
+\hbox{\thispagestyle{empty}}\clearpage
+\CopyingRightsText
+\include{Pre}
+\begin{center}
+\vbox to\textwidth{%
+\includegraphics[trim=0 0 148.5mm 0,clip]{./KenteiAnnai/KenteiAnnai.pdf}
+\vss}
+\end{center}%%\thispagestyle{empty}%
+\newpage
+\begin{center}
+\centering%%\thispagestyle{empty}%
+\includegraphics[trim=148.5mm 0 0 0,clip]{./KenteiAnnai/KenteiAnnai.pdf}
+\end{center}
+\newpage
+\tableofcontents
+\mainmatter
+\setcounter{chapter}{-1}
+\include{Chap00}
+\include{Chap01}
+\include{Chap02}
+\include{Chap03}
+\include{Chap04}
+\include{Chap05}
+\include{Chap06}
+\include{Chap07}
+\include{apd}
+\include{okuduke}
+\end{document}
+
+

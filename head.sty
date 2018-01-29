@@ -1,0 +1,283 @@
+\setcounter{tocdepth}{1}
+\RequirePackage{multicol}
+\DeclareRobustCommand*\KBchapterfont{\reset@font\fontsize{28Q}{35H}\mcb}
+\DeclareRobustCommand*\KBchapternumfont{\reset@font\fontsize{24Q}{35H}\bfs}
+%\DeclareRobustCommand*\KBsectionfont{\reset@font\fontsize{22Q}{35H}\mg}
+%\DeclareRobustCommand*\KBsectionnumfont{\reset@font\fontsize{22Q}{35H}\eb}
+
+\DeclareRobustCommand*\KBsectionfont{\reset@font\fontsize{16Q}{35H}\mg}
+\DeclareRobustCommand*\KBsectionnumfont{\reset@font\fontsize{16Q}{35H}\eb}
+
+\def\@makechapterhead#1{{\parindent\z@%
+{\unitlength=1mm%
+\begin{picture}(121,30)
+\put(0,0){\includegraphics[width=\textwidth]{chapter.pdf}}
+\put(0,16){\KBchapternumfont
+     \setlength\@tempdima{\linewidth}%
+    \if@mainmatter
+      \makebox[\textwidth][c]{%
+      \@chapapp\,{\fontfamily{ptm}\fontseries{bx}%
+      \fontsize{60Q}{60H}%
+      \selectfont\raisebox{-2mm}{\thechapter}}\,\@chappos}
+    \fi}
+\put(0,5){\makebox[\textwidth][c]{\KBchapterfont\@inhibitglue#1}}
+\end{picture}%
+}}\vspace{\baselineskip}}
+
+
+
+
+%\let\@make@appendix@chapterhead\@makechapterhead
+
+\def\@make@appendix@chapterhead#1{{\parindent\z@%
+{\unitlength=1mm%
+\begin{picture}(115,30)
+\put(0,0){\includegraphics[width=\textwidth]{chapter.pdf}}
+\put(2,16){\KBchapternumfont
+     \setlength\@tempdima{\linewidth}%
+    \if@mainmatter
+      \makebox[\textwidth][c]{%
+      \@chapapp\@chappos}
+    \fi}
+\put(3.5,5){\makebox[\textwidth][c]{\KBchapterfont#1}}
+\end{picture}%
+}}\vspace{\baselineskip}}
+
+
+
+\def\SecGraph{\raisebox{-.2zh}{\includegraphics{sectionL.pdf}}\hskip.5zw}
+\PreSecCntName{section}{\protect\SecGraph}
+
+\def\SecGraphR{\raisebox{-.2zh}{\includegraphics{sectionR.pdf}}}
+
+
+\def\@make@section@head#1#2#3{%
+\bgroup
+       \noindent#2\hskip#1\relax
+       \setbox\z@\hbox{\@svsec}%
+       \@tempdima\linewidth\advance\@tempdima-\wd\z@
+       \advance\@tempdima-#1\relax
+       \setbox\tw@\hbox{#3}%
+       \dp\z@\z@\copy\z@% ここが\thesectionの出力
+          \ifdim\wd\tw@>\@tempdima%% タイトルが折り返す場合
+               \vtop{\hsize=\@tempdima\@parboxrestore\unhbox\tw@\SecGraphR\@@par}
+               \par\noindent
+          \else%% タイトルが折り返さない場合．
+               \@inhibitglue\unhbox\tw@\hfill\SecGraphR
+          \fi
+       \advance\@tempdima\wd\z@
+\egroup
+}
+\seccntfixHeadfalse
+\seccntfixTocfalse
+
+\def\step#1{\refstepcounter{step}\setcounter{footnote}{0}%
+\par\addvspace{.25\baselineskip}\noindent
+\includegraphics{step\thestep}\par\nobreak%
+}
+
+\newcounter{tocpict}
+\def\thetocpict{\arabic{tocpict}}
+\def\cnttocpic{\stepcounter{tocpict}\includegraphics{../Parts/toc-mark\thetocpict}}
+%%%
+\def\@make@toc@chapterhead#1{%
+\begin{center}
+\begin{minipage}[t][7\baselineskip]{\textwidth}%
+\unitlength=1mm\begin{picture}(0,0)
+\put(-19.5,-59.25){\includegraphics[trim=1.3mm 0 50mm 0.5mm,clip]{../Parts/toc-head.pdf}}
+\end{picture}%
+\end{minipage}
+\end{center}
+}
+\l@chapter@@skip=1.0em \@plus\p@
+\renewcommand*{\l@chapter}[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \addvspace{\l@chapter@@skip}%
+    \begingroup
+      \parindent\z@ \rightskip\@pnumwidth \parfillskip-\rightskip
+      \leavevmode\KBtocchapterfont
+      \setlength\@lnumwidth{4zw}%
+      \advance\leftskip\@lnumwidth \hskip-\leftskip
+      #1\nobreak\hfil\nobreak\KBtocnumchapterfont\hbox{\hss
+%      \includegraphics{../Parts/toc-wark}%
+\cnttocpic
+      }%
+      \par\penalty\@M\vskip2mm%%\@highpenalty
+    \endgroup
+  \fi}
+
+\newcommand*{\l@Achapter}[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \addvspace{\l@chapter@@skip}%
+    \begingroup
+      \parindent\z@ \rightskip\@pnumwidth \parfillskip-\rightskip
+      \leavevmode\KBtocchapterfont
+      \setlength\@lnumwidth{4zw}%
+      \advance\leftskip\@lnumwidth \hskip-\leftskip
+      #1\nobreak\KBtocsectionfont
+      \leaders\hbox{$\m@th \mkern \@dotsep mu\hbox{\lower-.2zh\hbox{…}}\mkern \@dotsep
+       mu$}\hfill\nobreak\KBtocnumsectionfont\lower-.2zh\hbox{\hss
+      #2%
+      }%
+      \par\penalty\@M\vskip2mm%%\@highpenalty
+    \endgroup
+  \fi}
+
+\DeclareRobustCommand{\tocthechapterfont}{%
+\fontfamily{pag}\fontseries{b}\fontsize{28Q}{28H}\selectfont}
+\def\@chapter[#1](#2)#3{%
+  \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \refstepcounter{chapter}%
+    \typeout{\@chapapp\space\thechapter\space\@chappos}%
+    \addcontentsline{toc}{chapter}%
+	     {\protect\numberline{\@chapapp
+	     {\tocthechapterfont
+	     \thechapter}\@chappos}#1}%
+    \else\addcontentsline{toc}{chapter}{#1}\fi
+	 \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#2}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+\if@appendix@@
+  \@make@appendix@chapterhead{#3}%%\@appendix@@false
+  \else
+  \@makechapterhead{#3}%
+  \fi
+\@afterheading}
+
+\DeclareRobustCommand*\KBtocchapterfont{\reset@font\fontsize{22Q}{25H}\gtb}
+\DeclareRobustCommand*\KBtocnumchapterfont{\reset@font\fontsize{22Q}{25H}\gtb}
+\DeclareRobustCommand*\KBtocsectionfont{\reset@font\fontsize{14Q}{21H}\mg}
+\DeclareRobustCommand*\KBtocnumsectionfont{\reset@font\fontsize{14Q}{21H}\mg}
+\renewcommand*{\l@section}{\IfSecFontChange%
+\S@ectiontrue\@dottedtocline{1}{6.8em}{1.5em}}
+
+\DeclareRobustCommand\a@seccnt@prefix@section{\fontfamily{phv}\fontseries{b}\selectfont}
+\def\pre@section@mark@toc@out{\a@seccnt@prefix@section}
+
+\renewcommand{\@dotsep}{0.5}
+\def\@dottedtocline#1#2#3#4#5{\ifnum #1>\c@tocdepth \else
+  \vskip\toclineskip \@plus.2\p@
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+   \interlinepenalty\@M
+   \leavevmode
+   \@lnumwidth #3\relax
+   \advance\leftskip \@lnumwidth \hbox{}\hskip -\leftskip
+    {\@TocSectionSlectFont#4}
+    \nobreak\leaders\hbox{$\m@th \mkern \@dotsep mu\hbox{…}\mkern \@dotsep
+       mu$}\hfill \nobreak\hbox to\@pnumwidth{%
+         \hss\@TocSectionNumSlectFont#5}\par}\fi}
+
+
+
+
+\def\Intertext#1{%
+    \ifvmode\else\\\@empty\fi
+    \noalign{%
+      \penalty\postdisplaypenalty\vskip\z@
+      \vbox{\normalbaselines
+        \ifdim\linewidth=\columnwidth
+        \else \parshape\@ne \@totalleftmargin \linewidth
+        \fi
+        \noindent#1\par}%
+      \penalty\predisplaypenalty\vskip\z@%
+    }%
+}
+\newcounter{Paragraph}[step]
+\def\theParagraph{\arabic{Paragraph}}
+\newcommand\Paragraph[1]{\refstepcounter{Paragraph}%
+\paragraph*{[\theParagraph]\hskip1zw#1}\leavevmode}
+
+\newenvironment{別解}{%
+\trivlist\item[]\mbox{\bfseries 〔別解〕}\hskip1zw}{\endtrivlist}
+
+\newdimen\APbaseline
+\setlength{\APbaseline}{1.35\@@footnotesize@@baseline}
+
+\DeclareRobustCommand{\Appensize}{%
+\@setfontsize\Appensize\@viiipt{\APbaseline}%
+\abovedisplayskip .35\@@footnotesize@@baseline \@plus2\p@ \@minus4\p@
+\abovedisplayshortskip \z@ \@plus\p@
+\belowdisplayshortskip 3\p@ \@plus\p@ \@minus2\p@
+\belowdisplayskip .25\@@footnotesize@@baseline\@plus2\p@ \@minus4\p@
+\def\@listi{\leftmargin\leftmargini\labelwidth\leftmargini\advance\labelwidth-\labelsep\topsep.5\baselineskip\parsep\z@\itemsep\parsep}%
+}
+
+\newdimen\sfboxsep\sfboxsep\fboxsep
+\def\CopyingRightsText{%
+\hbox{\thispagestyle{empty}}\par\vfill
+\dimen0\textwidth\advance\dimen0-1zw
+\begin{center}
+\parbox{\dimen0}{\fontsize{12Q}{16H}\fontfamily{cmr}\selectfont
+\noindent \fboxsep\sfboxsep\framebox[0.5cm]{\sf\small R}〈日本複製権センター委託出版物〉\\
+本書を無断で複写複製（コピー）することは，著作権法上の例外を除き，禁じられています．本書をコピーされる場合は，事前に日本複製権センター（電話03-3401-2382）の許諾を受けてください．\par}
+\end{center}}
+
+
+\renewcommand{\tableofcontents}{%
+\@table@of@contents@@true
+  \chapter*{\contentsname}%
+    \@mkboth{\contentsname}{\contentsname}\vspace{\l@chapter@@skip}%
+    \vspace{-2\baselineskip}
+  \@starttoc{toc}%
+  \par\vfil\noindent ■装幀　岡　孝治%
+%\clearpage
+\begin{center}\markboth{}{}%
+\vbox to.7\textheight{%
+\includegraphics[trim=7.5mm 0 0 0,clip]{./KenteiAnnai/neraitokousei.pdf}\vss}%
+\end{center}
+	}
+
+
+%% 付録の目次体裁切り替えのため
+\if@KB@hyperref
+\def\@chapter[#1]#2{%
+  \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \refstepcounter{chapter}%
+    \typeout{\@chapapp\space\thechapter\space\@chappos}%
+    \addcontentsline{toc}{chapter}%
+	     {\protect\numberline{\@chapapp\thechapter\@chappos}#1}%
+    \else\addcontentsline{toc}{chapter}{#1}\fi
+	 \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#1}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+\if@appendix@@
+  \@make@appendix@chapterhead{#2}%%\@appendix@@false
+  \else
+  \@makechapterhead{#2}%
+  \fi
+\@afterheading}
+\else
+\def\@chapter[#1](#2)#3{%
+  \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \refstepcounter{chapter}%
+    \typeout{\@chapapp\space\thechapter\space\@chappos}%
+    \if@appendix@@
+    \addcontentsline{toc}{Achapter}%
+	     {\protect\numberline{\@chapapp\@chappos}\hskip-1zw#1}%
+	     \else
+    \addcontentsline{toc}{chapter}%
+	     {\protect\numberline{\@chapapp\thechapter\@chappos}#1}%
+	\fi
+    \else\addcontentsline{toc}{chapter}{#1}\fi
+	 \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#2}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+\if@appendix@@
+  \@make@appendix@chapterhead{#3}%%\@appendix@@false
+  \else
+  \@makechapterhead{#3}%
+  \fi
+\@afterheading}
+\fi

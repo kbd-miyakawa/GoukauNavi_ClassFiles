@@ -1,0 +1,12 @@
+%%弧\arc{AB}のように使用（島田追加）
+\renewcommand{\arc}[1]{%
+ \settowidth{\dimen0}{\ensuremath{#1}}%
+ \divide\dimen0 by 2%
+ \overset{\rotatebox{-90}{\ensuremath{\left(\rule{0pt}{\dimen0}\right.}}}{#1}%
+}%%%%%
+
+%%arcs.styがうまく使えなかったので
+%http://www.artsci.kyushu-u.ac.jp/~ssaito/jpn/tex/tips/misc.html
+%の記事をぱくりました
+
+

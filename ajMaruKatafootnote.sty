@@ -1,0 +1,29 @@
+\RequirePackage{emathPs}
+\RequirePackage{emathPsb}
+\definecolor{Ovalgray}{gray}{0.3}
+\def\Mframe#1{%
+\psfbox<framethickness=0.2mm,oval=3.5pt,
+framecolor=red>{$#1$}}
+
+
+\def\@makefnmark{\null\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+
+\newcommand\Footnote[2][\relax]{%
+\if#1\relax\refstepcounter{footnote}\else\setcounter{footnote}{#1}\fi%
+\ensuremath{^\text{\thefootnote}}\footnotetext[\c@footnote]{#2}%
+}
+
+\newcommand\Footnotemark[1][\relax]{%
+\if#1\relax\refstepcounter{footnote}\else\setcounter{footnote}{#1}\fi%
+\ensuremath{^\text{\thefootnote}}}
+
+\def\thefootnote{\ajLabel\ajMaruKata{footnote}}
+
+\endinput
+\[
+\Mframe{\lim_{n \to \infty}^{n \to \infty} a_n}\Footnote{AAAA}
+ = 
+\left(\alpha,\displaystyle \lim_{n \to \infty} b_n\right)\Footnote{AAAA} = \beta \Longrightarrow \alpha\leqq \beta\]
+%%%
+
+

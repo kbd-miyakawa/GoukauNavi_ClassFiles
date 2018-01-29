@@ -1,0 +1,129 @@
+%\RequirePackage{EMfbox}
+%\newenvironment{titlebox}[1]{%
+%\begin{rectbox}[vsep=0.5zw,hsep=1zw,item=\protect\fbox{\textbf{#1}}]}{
+%\end{rectbox}}
+
+\RequirePackage{emathPbb}
+\newenvironment{titlebox}[1]{%
+\begin{breakrectbox}[vsep=0.5zw,hsep=1zw,item=\protect\fbox{\textbf{#1}}]}{
+\end{breakrectbox}
+}
+
+
+\newenvironment{例}{\topsep.25\baselineskip%
+\trivlist\item[]\mbox{\fboxsep.25zw\fbox{\textbf{例}}\hskip1zw}
+}{\endtrivlist}
+
+\newenvironment{解}{\topsep.25\baselineskip%
+\trivlist\item[]\mbox{\fboxsep.25zw\fbox{\textbf{解}}\hskip1zw}
+}{\endtrivlist}
+
+\newenvironment{例題}[1][]{\par\noindent\textbf{\fbox{例題#1}}\hskip1zw\leavevmode}{}
+
+\newenvironment{問題}[1][]{\par\noindent\textbf{\fbox{問題#1}}\hskip1zw\leavevmode}{}
+
+\newenvironment{証明}[1][]{\par\noindent\textbf{\fbox{証明#1}}\hskip1zw\leavevmode}{}
+%\newenvironment{例題}{\par\noindent\textbf{\fbox{例題}}\hskip1zw\leavevmode}{}
+\newenvironment{解答}{\parindent0pt%
+\renewcommand{\theenumi}{\arabic{enumi}}%
+\renewcommand{\labelenumi}{(\theenumi)}%
+\textbf{\fbox{解答}}\hskip1zw\leavevmode
+}{}
+\newenvironment{解説}{\parindent0pt%
+\renewcommand{\theenumi}{\arabic{enumi}}%
+\renewcommand{\labelenumi}{(\theenumi)}%
+\ifnum\c@step=3
+\textbf{\fcolorbox[gray]{0}[gray]{0.85}{解説}}%
+\else\textbf{\fbox{解説}}\fi
+\hskip1zw\leavevmode
+}{}
+\newenvironment{kakomi}{\abovedisplayskip \z@\abovedisplayshortskip \z@\belowdisplayshortskip \z@\belowdisplayskip \z@\begin{linebox}
+}{\end{linebox}}
+\newcounter{step}[section]
+\def\thestep{\arabic{step}}
+\def\step#1{\refstepcounter{step}\setcounter{footnote}{0}%
+\subsection*{\protect\fbox{\sffamily step\thestep}\hskip1zw#1}}
+
+%\def\spread@equation{\reset@strutbox@
+%                 \openup-.25\jot \let\spread@equation\@empty}
+%                 \let\@spread@equation\spread@equation
+
+\def\thesection{\arabic{section}}
+
+
+\newenvironment{shadebox}{\abovedisplayskip \z@\abovedisplayshortskip \z@\belowdisplayshortskip \z@\belowdisplayskip \z@\begin{Shadebox}}{\end{Shadebox}}
+
+\let\Mw\mawarikomi
+\let\endMw\endmawarikomi
+
+\newdimen\KB@list@mathindent
+\def\list#1#2{%
+  \ifnum \@listdepth >5\relax
+    \@toodeep
+  \else
+    \global\advance\@listdepth\@ne
+  \fi
+  \KB@list@mathindent4zw
+  \rightmargin\z@
+  \listparindent\z@
+  \itemindent\z@
+  \csname @list\romannumeral\the\@listdepth\endcsname
+  \def\@itemlabel{#1}%
+  \let\makelabel\@mklab
+  \@nmbrlistfalse
+  #2\relax
+  \advance\KB@list@mathindent-\leftmargin
+  \mathindent\KB@list@mathindent
+  \@trivlist
+  \parskip\parsep
+  \parindent\listparindent
+  \advance\linewidth -\rightmargin
+  \advance\linewidth -\leftmargin
+  \advance\@totalleftmargin \leftmargin
+  \parshape \@ne \@totalleftmargin \linewidth
+  \ignorespaces}
+
+
+
+\def\@makechapterhead#1{{\parindent\z@%
+\toplinebox{10}{\vskip2\normalbaselineskip% 10行取りにしています．
+   \KBchapternumfont
+   \ifnum \c@secnumdepth >\m@ne
+     \setlength\@tempdima{\linewidth}%
+    \if@mainmatter
+      \@chapapp\thechapter\@chappos
+     \else
+      \hbox{}
+    \fi
+%%%     \vspace{.9\Cvs}\par
+\hskip1zw
+     \KBchapterfont\@inhibitglue#1\par\vfill\fi}}%
+}
+\let\@make@appendix@chapterhead\@makechapterhead
+
+\newcommand{\qerel}[2]{%\dis
+\mathrel{\mathop{#1}\limits^{\text{\ajMaruKata{#2}}}}}
+
+\newcommand{\vs}[1]{\vspace{#1}}
+\newcommand{\VS}[1]{\vspace{#1\baselineskip}}
+
+\newcommand{\kataran}[2]{\ensuremath{_{#1}\!\mathrm{C}_{#2}}}
+
+\newcommand{\Kotae}{……\hbox{（答）}}
+
+
+
+
+\newcommand{\Caption}[1]{%
+\makebox[\linewidth][c]{\bfseries\small\hbox{#1}}}
+
+\let\KajKaku\ajKaku
+\renewcommand{\ajKaku}[1]{\textmcl{\KajKaku{#1}}}
+
+\newenvironment{zDescription}{%
+\list{}{\leftmargin0pt\labelwidth0pt\itemindent0pt\labelsep1zw
+\let\makelabel\zDescriptionlabel}
+}{\endlist}
+\newcommand{\zDescriptionlabel}[1]{%
+   \hspace\labelsep\normalfont#1}
+
