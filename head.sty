@@ -78,13 +78,13 @@
 
 \newcounter{tocpict}
 \def\thetocpict{\arabic{tocpict}}
-\def\cnttocpic{\stepcounter{tocpict}\includegraphics{../Parts/toc-mark\thetocpict}}
+\def\cnttocpic{\stepcounter{tocpict}\includegraphics{./Parts/toc-mark\thetocpict}}
 %%%
 \def\@make@toc@chapterhead#1{%
 \begin{center}
 \begin{minipage}[t][7\baselineskip]{\textwidth}%
 \unitlength=1mm\begin{picture}(0,0)
-\put(-19.5,-59.25){\includegraphics[trim=1.3mm 0 50mm 0.5mm,clip]{../Parts/toc-head.pdf}}
+\put(-19.5,-59.25){\includegraphics[trim=1.3mm 0 50mm 0.5mm,clip]{./Parts/toc-head.pdf}}
 \end{picture}%
 \end{minipage}
 \end{center}
@@ -100,7 +100,7 @@
       \setlength\@lnumwidth{4zw}%
       \advance\leftskip\@lnumwidth \hskip-\leftskip
       #1\nobreak\hfil\nobreak\KBtocnumchapterfont\hbox{\hss
-%      \includegraphics{../Parts/toc-wark}%
+%      \includegraphics{./Parts/toc-wark}%
 \cnttocpic
       }%
       \par\penalty\@M\vskip2mm%%\@highpenalty
